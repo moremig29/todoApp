@@ -1,0 +1,77 @@
+
+<section>
+  <div class="flex justify-content-center">
+    <div class="flex-initial w-7">
+
+      <div class="mt-3">
+        <h2 class="underline">TO-DO</h2>
+      </div>
+
+      <p-card header="What's next?">
+        <div class="flex justify-content-between">
+          <div class="flex flex-wrap gap-2">
+            <p-tag value="New"></p-tag><p-tag value="New"></p-tag><p-tag value="New"></p-tag><p-tag value="New"></p-tag>
+          </div>
+          <div>
+            <span>
+              <i
+                class="pi pi-plus pointer"
+                (click)="op.toggle($event)">
+
+              </i>
+            </span>
+          </div>
+        </div>
+        <hr>
+        <ul>
+          @for( task of tasks; track task; let idx = $index ) {
+            <li>
+              <div class="flex mt-3 gap-2 justify-content-between">
+                <span><small>({{ task.date | date:'shortDate' }})</small> {{ task.task }} </span>
+                <div class="flex gap-2">
+                  <span>
+                    <i
+                      class="pi pi-check pointer"
+                      pTooltip="Finalizar"
+                      tooltipPosition="top"
+                      (click)="completeTask( idx )"
+                      style="color: #22c55e">
+                    </i>
+                  </span>
+                  <span>
+                    <i
+                      class="pi pi-pencil pointer"
+                      pTooltip="Editar"
+                      tooltipPosition="top"
+                      (click)="editTask( idx )"
+                      style="color: #f97316">
+                    </i>
+                  </span>
+                  <span>
+                    <i
+                      class="pi pi-trash pointer"
+                      pTooltip="Eliminar"
+                      tooltipPosition="top"
+                      (click)="deleteTask( idx )"
+                      style="color: #ff3d32">
+                    </i>
+                  </span>
+                </div>
+              </div>
+            </li>
+          }
+        </ul>
+          <div>
+          </div>
+
+          <p-overlayPanel #op>
+            <ng-template pTemplate="content">
+              <h4>Custom Content</h4>
+            </ng-template>
+          </p-overlayPanel>
+
+      </p-card>
+    </div>
+  </div>
+</section>
+
